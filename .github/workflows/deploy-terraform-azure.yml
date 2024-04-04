@@ -1,19 +1,19 @@
 name: Terraform Azure Deployment
-on: 
- push:
-   branches:
-     - dev-branch
+on:
+  push:
+    branches:
+      - dev-branch
 jobs:
   build:
-   runs-on: ubuntu-latest 
-   steps:
-     - name: checkout repo 
-       uses: actions/acheckout@v2 
-     - name: Setup Terraform
-       uses: hashicorp/setup-terraform@v1
-       with:
+    runs-on: ubuntu-latest 
+    steps:
+      - name: checkout repo 
+        uses: actions/checkout@v2 
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
           terraform_version: 1.0.0
-     - name: login Azure
-       uses: azure/login@v1 
-       with:
-         creds: ${{secrets.AZURE_CREDENTIALS}}
+      - name: login Azure
+        uses: azure/login@v1 
+        with:
+          creds: ${{secrets.AZURE_CREDENTIALS}}
