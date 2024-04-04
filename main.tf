@@ -2,9 +2,9 @@ provider "azurerm" {
   features {}
 }
 
+# Import existing resource group
 resource "azurerm_resource_group" "example" {
   name     = "example-resources"
-  location = "East US"
 }
 
 resource "azurerm_storage_account" "example" {
