@@ -22,12 +22,12 @@ jobs:
 
       - name: Import Resource Group
          
-        run: terraform init && terraform import azurerm_resource_group.example /subscriptions/5d4126f9-e115-4fdf-821b-2f6ee97de06e/resourceGroups/myResourceGroup
+        #run: terraform init && terraform import azurerm_resource_group.example /subscriptions/5d4126f9-e115-4fdf-821b-2f6ee97de06e/resourceGroups/myResourceGroup
 
       - name: Provision with Terraform 
         run: |
           terraform --version 
           terraform init
           terraform plan
-          terraform apply -auto-approve
+          terraform destroy -auto-approve
           terraform show
