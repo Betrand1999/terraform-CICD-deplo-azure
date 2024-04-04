@@ -12,10 +12,15 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
         with:
-          terraform_version: 1.0.0
+          terraform_version:  1.7.5.
       - name: login Azure
         uses: azure/login@v1 
         with:
           creds: ${{secrets.AZURE_CREDENTIALS}}
       - name: provision with terraform 
         run: terraform --version 
+      - name: provision to azure 
+        run: |
+         terraform init
+         terraform validate
+         terraform plan
