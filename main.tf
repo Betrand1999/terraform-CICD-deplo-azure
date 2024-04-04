@@ -5,6 +5,7 @@ provider "azurerm" {
 # Import existing resource group
 resource "azurerm_resource_group" "example" {
   name     = "example-resources"
+  location = "dummy-location"  # Provide a dummy value for location
 }
 
 resource "azurerm_storage_account" "example" {
