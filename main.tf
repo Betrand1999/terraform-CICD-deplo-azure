@@ -8,7 +8,7 @@ resource "azurerm_resource_group" "example" {
 }
 
 resource "azurerm_storage_account" "example" {
-  name                = "mystorageacecount123adcder"  # Choose a globally unique name
+  name                = "mystorage1231"  # Example valid name
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_resource_group.example.location
   account_tier        = "Standard"
@@ -17,4 +17,5 @@ resource "azurerm_storage_account" "example" {
     environment = "staging"
   }
 }
+
 
