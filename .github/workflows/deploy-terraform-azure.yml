@@ -1,19 +1,33 @@
 name: Terraform Azure Deployment
-on: 
- push:
-   branches:
-     - dev-branch
+on:
+  push:
+    branches:
+      - dev-branch
 jobs:
   build:
-   runs-on: ubuntu-latest 
-   steps:
-     - name: checkout repo 
-       uses: actions/acheckout@v2 
-     - name: Setup Terraform
-       uses: hashicorp/setup-terraform@v1
-       with:
-          terraform_version: 1.0.0
-     - name: login Azure
-       uses: azure/login@v1 
-       with:
-         creds: ${{secrets.AZURE_CREDENTIALS}}
+    runs-on: self-hosted 
+    steps:
+      - name: Checkout Repo 
+        uses: actions/checkout@v2 
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.7.5
+
+      - name: Login Azure
+        uses: azure/login@v1 
+        with:
+          creds: ${{secrets.AZURE_CREDENTIALS}}
+
+      - name: Import Resource Group
+         
+        run: terraform init && terraform import azurerm_resource_group.example /subscriptions/5d4126f9-e115-4fdf-821b-2f6ee97de06e/resourceGroups/myResourceGroup
+
+      - name: Provision with Terraform 
+        run: |
+          terraform --version 
+          terraform init
+          terraform plan
+          terraform apply -auto-approve
+          terraform show
