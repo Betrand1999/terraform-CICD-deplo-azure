@@ -21,6 +21,8 @@ jobs:
         run: terraform --version 
       - name: provision to azure 
         run: |
+         terraform plan
+         terrafom apply -auto-approve
        
         
     
